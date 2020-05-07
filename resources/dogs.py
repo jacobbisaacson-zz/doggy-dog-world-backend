@@ -1,5 +1,5 @@
 import models
-from flask import Blueprint
+from flask import Blueprint, request
 
 dogs = Blueprint('dogs', 'dogs')
 
@@ -11,4 +11,6 @@ def dogs_index():
 # CREATE
 @dogs.route('/', methods=['POST'])
 def create_dog():
-	return "hitting create_dog route"
+  payload = request.get_json()
+  print(payload)
+  return "you hit dog create route -- check terminal"
