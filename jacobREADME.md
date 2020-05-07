@@ -1,21 +1,22 @@
 ## Wireframes
 Purpose / Notes
 ![Purpose / Notes](https://i.imgur.com/iiANu6z.jpg)
-
+Login / Register
 ![Login / Register](https://i.imgur.com/RQL9jm0.jpg)
-
+Add / Edit Dog
 ![Add / Edit Dog](https://i.imgur.com/Okj4R33.jpg)
-
+All Dogs
 ![All Dogs](https://i.imgur.com/6nr1w42.jpg)
-
+Map / Home
 ![Map / Home](https://i.imgur.com/SjRDyt7.jpg)
 OR
+MapShowPage / Home(UserPage) (better version)
 ![MapShowPage / Home(UserPage) (better version)](https://i.imgur.com/vhpRonQ.jpg)
-
+Add / Edit Profile / Preferences
 ![Add / Edit Profile / Preferences](https://i.imgur.com/vhpRonQ.jpg)
-
+Models chicken scratch
 ![Models chicken scratch](https://i.imgur.com/dJt1Us0.jpg)
-
+User Preferences / Dog Profile (version 1)
 ![User Preferences / Dog Profile (version 1)](https://i.imgur.com/l3Ukqb0.jpg)
 
 
