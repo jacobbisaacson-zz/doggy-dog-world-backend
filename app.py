@@ -13,7 +13,9 @@ def hello():
 def get_json():
   return jsonify(['hello', 'hi', 'hey'])
 
-
+@app.route('/say_hello/<username>')
+def say_hello(username):
+  return "Hello {}".format(username)
 
 
 
