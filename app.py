@@ -14,13 +14,6 @@ app.secret_key = "Super Secret Pizza Party."
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-CORS(dogs, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
-
-app.register_blueprint(dogs, url_prefix='/api/v1/dogs')
-app.register_blueprint(users, url_prefix='/api/v1/users')
-
-
 @login_manager.user_loader
 def load_user(user_id):
   try:
@@ -34,12 +27,17 @@ def load_user(user_id):
 def unauthorized():
   return jsonify(
     data={
-      'error': 'USER is not LOGGED IN'
+      'error': 'User is NOT LOGGED IN'
     },
-    message="You must be LOGGED IN to access that resource",
+    message="You must be LOGGED IN to access",
     status=401
   ), 401
 
+CORS(dogs, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
+
+app.register_blueprint(dogs, url_prefix='/api/v1/dogs')
+app.register_blueprint(users, url_prefix='/api/v1/users')
 
 @app.route('/')
 def hello():

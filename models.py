@@ -16,7 +16,8 @@ class Dog(Model):
   name = CharField()
   owner = ForeignKeyField(User, backref='dogs')
   breed = CharField()
-  created_at: DateTimeField(default=datetime.datetime.now)
+  created_at = DateTimeField(default=datetime.datetime.now)
+  # image?
 
   class Meta: 
     database = DATABASE
