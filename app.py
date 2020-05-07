@@ -1,40 +1,43 @@
 from flask import Flask, jsonify
-from resources.users import users
+from resources.dogs import dogs
+# from resources.users import users
 import models
-from flask_cors import CORS
-from flask_login import LoginManager
+# from flask_cors import CORS
+# from flask_login import LoginManager
 
 DEBUG=True
 PORT=8000
 
 app = Flask(__name__)
 
-app.secret_key = "Super Secret Pizza Party."
-login_manager = LoginManager()
-login_manager.init_app(app)
+app.register_blueprint(dogs, url_prefix='/api/v1/dogs')
 
-@login_manager.user_loader
-def load_user(user_id):
-  try:
-    print("Loading the following USER: ")
-    user = models.User.get_by_id(user_id)
-    return user
-  except models.DoesNotExist:
-    return none
+# app.secret_key = "Super Secret Pizza Party."
+# login_manager = LoginManager()
+# login_manager.init_app(app)
 
-@login_manager.unauthorized_handler
-def unauthorized():
-  return jsonify(
-    data={
-      'error': 'USER is not LOGGED IN'
-    },
-    message="You must be LOGGED IN to access that resource",
-    status=401
-  ), 401
+# @login_manager.user_loader
+# def load_user(user_id):
+#   try:
+#     print("Loading the following USER: ")
+#     user = models.User.get_by_id(user_id)
+#     return user
+#   except models.DoesNotExist:
+#     return none
 
-CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
+# @login_manager.unauthorized_handler
+# def unauthorized():
+#   return jsonify(
+#     data={
+#       'error': 'USER is not LOGGED IN'
+#     },
+#     message="You must be LOGGED IN to access that resource",
+#     status=401
+#   ), 401
 
-app.register_blueprint(users, url_prefix='/api/v1/users')
+# CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
+
+# app.register_blueprint(users, url_prefix='/api/v1/users')
 
 @app.route('/')
 def hello():
@@ -50,25 +53,8 @@ def say_hello(username):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
-	app.run(debug=DEBUG, port=PORT)
+  models.initialize()
+  app.run(debug=DEBUG, port=PORT)
 
   

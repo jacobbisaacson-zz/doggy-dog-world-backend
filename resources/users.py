@@ -10,7 +10,6 @@ users = Blueprint('users', 'users')
 def test_user_resource(): 
   return "user resource works"
 
-
 @users.route('/register', methods=['POST'])
 def register():
 
