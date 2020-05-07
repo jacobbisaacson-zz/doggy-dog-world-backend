@@ -4,15 +4,6 @@ from flask_login import UserMixin
 
 DATABASE = SqliteDatabase('dogs.sqlite') 
 
-class Dog(Model):
-  name = CharField()
-  owner = CharField()
-  breed = CharField()
-  created_at: DateTimeField(default=datetime.datetime.now)
-
-  class Meta: 
-    database = DATABASE
-
 class User(UserMixin, Model):
   username=CharField(unique=True)
   email=CharField(unique=True)
@@ -20,6 +11,16 @@ class User(UserMixin, Model):
 
   class Meta:
     database = DATABASE
+
+class Dog(Model):
+  name = CharField()
+  owner = ForeignKeyField(User, backref='dogs')
+  breed = CharField()
+  created_at: DateTimeField(default=datetime.datetime.now)
+
+  class Meta: 
+    database = DATABASE
+
 
 def initialize():
   DATABASE.connect()

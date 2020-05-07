@@ -1,6 +1,7 @@
 import models
 from flask import Blueprint, request, jsonify
 from playhouse.shortcuts import model_to_dict
+from flask_login import current_user
 
 dogs = Blueprint('dogs', 'dogs')
 
@@ -10,6 +11,8 @@ def dogs_index():
   result = models.Dog.select()
   print(result)
   dog_dicts = [model_to_dict(dog) for dog in result]
+  for dog_dict in dog_dicts:
+    dog_dict['owner'].pop('password')
   print(dog_dicts)
 
   return jsonify({
@@ -23,13 +26,19 @@ def dogs_index():
 def create_dog():
   payload = request.get_json()
   print(payload)
-  new_dog = models.Dog.create(name=payload['name'], owner=payload['owner'], breed=payload['breed'])
+  new_dog = models.Dog.create(
+    name=payload['name'], 
+    owner=current_user.id, 
+    breed=payload['breed']
+  )
   print(dir(new_dog))
   dog_dict = model_to_dict(new_dog)
+  print(dog_dict)
+  dog_dict['owner'].pop('password')
 
   return jsonify(
     data=dog_dict, 
-    message='Successfully created dog!',
+    message='Successfully CREATED dog',
     status=201
   ), 201
 

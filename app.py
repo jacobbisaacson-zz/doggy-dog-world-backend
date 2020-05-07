@@ -28,7 +28,7 @@ def load_user(user_id):
     user = models.User.get_by_id(user_id)
     return user
   except models.DoesNotExist:
-    return none
+    return None
 
 @login_manager.unauthorized_handler
 def unauthorized():
