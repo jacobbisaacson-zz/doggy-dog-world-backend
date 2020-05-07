@@ -1,4 +1,4 @@
-import models 
+import models
 from flask import Blueprint, request, jsonify
 from flask_bcrypt import generate_password_hash, check_password_hash
 from playhouse.shortcuts import model_to_dict
@@ -135,3 +135,6 @@ def logout():
     message="Successfully logged out.",
     status=200
   ), 200
+
+
+
