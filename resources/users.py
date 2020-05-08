@@ -2,14 +2,34 @@ import models
 from flask import Blueprint, request, jsonify
 from flask_bcrypt import generate_password_hash, check_password_hash
 from playhouse.shortcuts import model_to_dict
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 users = Blueprint('users', 'users')
 
 # TEST
 @users.route('/', methods=['GET'])
-def test_user_resource(): 
-  return "user resource works"
+def user_show():
+  user_dict = model_to_dict(current_user)
+  user_dict.pop('password')
+  return jsonify({
+    'data': user_dict,
+    'message': "Successfully FOUND you, the USER",
+    'status': 200
+  }), 200
+
+
+# INDEX (single user - logged in) /api/v1/users
+# @users.route('/', methods=['GET'])
+# @login_required
+# def user_index(): 
+#   payload
+
+  # return jsonify({
+  #   'data': current_user_dicts,
+  #   'message': f"Successfully FOUND {current_user_user_dicts} you, the USER",
+  #   'status': 200
+  # }), 200
+
 
 # REGISTER
 @users.route('/register', methods=['POST'])
