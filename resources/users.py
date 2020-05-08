@@ -6,7 +6,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 users = Blueprint('users', 'users')
 
-# TEST
+# INDEX
 @users.route('/', methods=['GET'])
 def user_show():
   user_dict = model_to_dict(current_user)
@@ -16,6 +16,12 @@ def user_show():
     'message': "Successfully FOUND you, the USER",
     'status': 200
   }), 200
+
+# # CREATE USER PROFILE
+# @users.route('/', methods=['POST'])
+# def create_user_profile():
+#   dropdown_list = ['Name', 'Clean', 'Fenced', 'Busy', 'Big']
+#   return 
 
 
 # INDEX (single user - logged in) /api/v1/users
@@ -35,15 +41,15 @@ def user_show():
 @users.route('/register', methods=['POST'])
 def register():
   payload = request.get_json()
-  payload['email'] = payload['email'].lower()
+  # payload['email'] = payload['email'].lower()
   payload['username'] = payload['username'].lower()
   print(payload)
 
   try:
-    models.User.get(models.User.email == payload['email'])
+    models.User.get(models.User.username == payload['username'])
     return jsonify(
       data={},
-      message=f"A user with the email {payload['email']} ALREADY EXISTS",
+      message=f"A user with the username {payload['username']} ALREADY EXISTS",
       status=401
     ), 401
 
@@ -51,7 +57,7 @@ def register():
     pw_hash = generate_password_hash(payload['password'])
     created_user = models.User.create(
       username=payload['username'],
-      email=payload['email'],
+      # email=payload['email'],
       password=pw_hash
     )
     print(created_user)
@@ -62,7 +68,7 @@ def register():
     created_user_dict.pop('password')
     return jsonify(
       data=created_user_dict,
-      message=f"Sucessfully REGISTERED user {created_user_dict['email']}",
+      message=f"Sucessfully REGISTERED user {created_user_dict['username']}",
       status=201
     ), 201
 
@@ -71,10 +77,10 @@ def register():
 @users.route('/login', methods=['POST'])
 def login():
   payload = request.get_json()
-  payload['email'] = payload['email'].lower()
+  # payload['email'] = payload['email'].lower()
   payload['username'] = payload['username'].lower()
   try: 
-    user = models.User.get(models.User.email == payload['email'])
+    user = models.User.get(models.User.username == payload['username'])
     user_dict = model_to_dict(user)
     password_is_good = check_password_hash(user_dict['password'], payload['password'])
     if(password_is_good):
@@ -83,7 +89,7 @@ def login():
       user_dict.pop('password')
       return jsonify(
         data=user_dict,
-        message=f"Successfully LOGGED IN {user_dict['email']}",
+        message=f"Successfully LOGGED IN {user_dict['username']}",
         status=200
       ), 200
 
@@ -91,7 +97,7 @@ def login():
       print('pw is no good')
       return jsonify(
         data={},
-        message="Email or password is INCORRECT",
+        message="Username or password is INCORRECT",
         status=401
       ), 401
 
@@ -99,7 +105,7 @@ def login():
     print('username is no good')
     return jsonify(
       data={},
-      message="Email or password is INCORRECT",
+      message="Username or password is INCORRECT",
       status=401
     ), 401
 
@@ -131,7 +137,7 @@ def get_logged_in_user():
     user_dict.pop('password')
     return jsonify(
       data=user_dict,
-      message=f"CURRENTLY LOGGED IN as {user_dict['email']}.",
+      message=f"CURRENTLY LOGGED IN as {user_dict['username']}.",
       status=200
     ), 200
 

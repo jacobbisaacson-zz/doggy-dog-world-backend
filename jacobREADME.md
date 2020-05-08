@@ -94,7 +94,7 @@ User Preferences / Dog Profile (version 1)
 - React front
 - Flask back
 - SQL DB
-- Google Maps / Mapbox API
+- Google Maps / Mapbox API ??
 
 
 ## Other Notes
@@ -109,6 +109,16 @@ User Preferences / Dog Profile (version 1)
 - 
 
 ## Questions for TS, RA or DB
+- How can I assign values to the importance of each preference a User selects from the options?
+- Am I setting up models correctly?
+- Route for creating user profile?  dog profile?  or should those fields be a part of the models?
+- "bound dispatchAction" when trying to add a dog
+- registering (sign up here to register) -- 
+		Warning: Failed prop type: Invalid prop `children` supplied to `Form`, expected a ReactNode.
+    in Form (at LoginRegisterForm/index.js:44)
+    in LoginRegisterForm (at App.js:95)
+    in div (at App.js:86)
+    in App (at src/index.js:9)
 - 
 
 

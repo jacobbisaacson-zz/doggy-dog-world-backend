@@ -6,8 +6,11 @@ DATABASE = SqliteDatabase('dogs.sqlite')
 
 class User(UserMixin, Model):
   username=CharField(unique=True)
-  email=CharField(unique=True)
+  # email=CharField(unique=True)
   password=CharField()
+  # name=CharField()
+  # clean=
+  # note=TextField()
 
   class Meta:
     database = DATABASE
