@@ -33,13 +33,13 @@ class Park(Model):
   name=CharField()
 
   # location=CharField() ********
-  isClean=BooleanField(default=False, required=True)
-  isBig=BooleanField(default=False, required=True)
-  isFenced=BooleanField(default=False, required=True)
-  isBusy=BooleanField(default=False, required=True)
+  isClean=BooleanField(null = False)
+  isBig=BooleanField(null = False)
+  isFenced=BooleanField(null = False)
+  isBusy=BooleanField(null = False)
   current_time=DateTimeField(default=datetime.datetime.now)
 
-
+  # do these need to be defauklt = false?
   # do i give these integers?  and then the drop down selection refers to a number?
 
 
@@ -47,7 +47,7 @@ def initialize():
   DATABASE.connect()
 
   DATABASE.create_tables([User, Dog], safe=True)
-  print("CONNECTED to DB and CREATED (User and Dog) TABLES if they weren't already there")
+  print("CONNECTED to DB and CREATED (User and Dog and Park) TABLES if they weren't already there")
 
   DATABASE.close()
 
