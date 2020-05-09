@@ -6,11 +6,15 @@ DATABASE = SqliteDatabase('dogs.sqlite')
 
 class User(UserMixin, Model):
   username=CharField(unique=True)
-  # email=CharField(unique=True)
   password=CharField()
-  # name=CharField()
-  # clean=
-  # note=TextField()
+  name=CharField()
+  clean_pref=IntegerField()
+  big_pref=IntegerField()
+  fenced_pref=IntegerField()
+  busy_pref=IntegerField()
+  note=CharField()
+
+  # email=CharField(unique=True)
 
   class Meta:
     database = DATABASE
@@ -27,15 +31,12 @@ class Dog(Model):
 
 class Park(Model):
   name=CharField()
-  location=CharField()
-  isClean=BooleanField(default=False)
-  isBig=BooleanField(default=False)
-  isFenced=BooleanField(default=False)
-  isBusy=BooleanField(default=False)
+  # location=CharField() ********
+  isClean=BooleanField(default=False, required=True)
+  isBig=BooleanField(default=False, required=True)
+  isFenced=BooleanField(default=False, required=True)
+  isBusy=BooleanField(default=False, required=True)
   current_time=DateTimeField(default=datetime.datetime.now)
-
-  # do i give these integers?  and then the drop down selection refers to a number?
-
 
 def initialize():
   DATABASE.connect()
@@ -44,3 +45,5 @@ def initialize():
   print("CONNECTED to DB and CREATED (User and Dog) TABLES if they weren't already there")
 
   DATABASE.close()
+
+

@@ -123,7 +123,7 @@ User Preferences / Dog Profile (version 1)
     in LoginRegisterForm (at App.js:95)
     in div (at App.js:86)
     in App (at src/index.js:9)
-- 
+- FOR scoring system (preferences) use 1, 2, and 3.
 
 
 

@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from resources.dogs import dogs
 from resources.users import users
+from resources.parks import parks
 import models
 from flask_cors import CORS
 from flask_login import LoginManager
@@ -35,9 +36,11 @@ def unauthorized():
 
 CORS(dogs, origins=['http://localhost:3000'], supports_credentials=True)
 CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(parks, origins=['http://localhost:3000'], supports_credentials=True)
 
 app.register_blueprint(dogs, url_prefix='/api/v1/dogs')
 app.register_blueprint(users, url_prefix='/api/v1/users')
+app.register_blueprint(parks, url_prefix='/api/v1/parks')
 
 @app.route('/')
 def hello():
@@ -50,7 +53,6 @@ def get_json():
 @app.route('/say_hello/<username>')
 def say_hello(username):
   return "Hello {}".format(username)
-
 
 
 if __name__ == '__main__':
