@@ -103,27 +103,39 @@ User Preferences / Dog Profile (version 1)
 
 ## Other Notes
 - Can the User add comments / posts to the park
-- Does the park data (related to User Preferences) revert to Default at 12AM daily?
-- Can User do anything to CRUD a park?
+
+- Does the park data (related to User Preferences) revert to Default at 12AM daily? (user is going to cruyd the parks)
+
 - Should the home page be the Map, or the list of parks with the User's profile side by side?
 	- where the User could select a park, or edit/update their profile/preferences
-- Can Users chat?
+- Can Users chat? (socket.io)
+
 - Can user "check-in" to say they are currently at a park?
+
 - Is there any social element whatsoever?
 - 
 
 ## Questions for TS, RA or DB
-- How can I assign values to the importance of each preference a User selects from the options?
-- Am I setting up models correctly?
+- How can I assign values to the importance of each preference a User selects from the options? (later 5.10)
+- Am I setting up models correctly? (good)
+
 - Route for creating user profile?  dog profile?  or should those fields be a part of the models?
-- "bound dispatchAction" when trying to add a dog
+
 - registering (sign up here to register) -- 
+
 		Warning: Failed prop type: Invalid prop `children` supplied to `Form`, expected a ReactNode.
     in Form (at LoginRegisterForm/index.js:44)
     in LoginRegisterForm (at App.js:95)
     in div (at App.js:86)
     in App (at src/index.js:9)
-- FOR scoring system (preferences) use 1, 2, and 3.
+// dont worry about this for now //
+
+
+
+- FOR scoring system (preferences) use 1, 2, and 3
+- Get mapbox token
+- integerfield for perferences
+- making both parks and user pref's integers, 
 
 
 
