@@ -43,6 +43,7 @@ User Preferences / Dog Profile (version 1)
 - User can see which parks are Green, Yellow, or Red light
 - User can select park to see that park's details:
 	- including name, location, clean, big, fenced, busy
+- User can CRUD Parks
 
 ## Models
 
@@ -87,6 +88,9 @@ User Preferences / Dog Profile (version 1)
 - /dogs/id (edit/update) PUT
 
 - /parks (show/index) GET
+- /parks/ (create) POST
+- /parks/id (delete) DELETE
+- /parks/id (edit/update) PUT
 
 
 ## Tech Used
