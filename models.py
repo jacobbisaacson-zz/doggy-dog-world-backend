@@ -31,12 +31,24 @@ class Dog(Model):
 
 class Park(Model):
   name=CharField()
+<<<<<<< HEAD
   # location=CharField() ********
   isClean=BooleanField(default=False, required=True)
   isBig=BooleanField(default=False, required=True)
   isFenced=BooleanField(default=False, required=True)
   isBusy=BooleanField(default=False, required=True)
   current_time=DateTimeField(default=datetime.datetime.now)
+=======
+  location=CharField()
+  isClean=BooleanField(default=False)
+  isBig=BooleanField(default=False)
+  isFenced=BooleanField(default=False)
+  isBusy=BooleanField(default=False)
+  current_time=DateTimeField(default=datetime.datetime.now)
+
+  # do i give these integers?  and then the drop down selection refers to a number?
+
+>>>>>>> 2a6673f803b9cf1dfdd3f283977570a84dc925fc
 
 def initialize():
   DATABASE.connect()

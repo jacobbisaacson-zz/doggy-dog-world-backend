@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import models
 from flask import Blueprint, request, jsonify
 from playhouse.shortcuts import model_to_dict
@@ -24,3 +25,6 @@ parks = Blueprint('parks', 'parks')
 @parks.route('/')
 def parks_index():
   return "parks resource working"
+=======
+parks.py
+>>>>>>> 2a6673f803b9cf1dfdd3f283977570a84dc925fc
