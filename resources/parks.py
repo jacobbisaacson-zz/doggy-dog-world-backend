@@ -33,10 +33,11 @@ def create_park():
   print(payload)
   new_park = models.Park.create(
     name=payload['name'],
-    isClean=payload['isClean'],
-    isBig=payload['isBig'],
-    isFenced=payload['isFenced'],
-    isBusy=payload['isBusy'],
+    clean=payload['clean'],
+    big=payload['big'],
+    fenced=payload['fenced'],
+    busy=payload['busy'],
+    location=payload['location'],
     owner=current_user.id
   )
   print(dir(new_park))

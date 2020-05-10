@@ -50,11 +50,11 @@ class Park(Model):
   name=CharField()
   owner=ForeignKeyField(User, backref='parks')
   # park_creator=ForeignKeyField(User, backref='parks')
-  # location=CharField() ********
-  isClean=BooleanField(null = False)
-  isBig=BooleanField(null = False)
-  isFenced=BooleanField(null = False)
-  isBusy=BooleanField(null = False)
+  location=CharField()
+  clean=IntegerField()
+  big=IntegerField()
+  fenced=IntegerField()
+  busy=IntegerField()
   # current_time=DateTimeField(default=datetime.datetime.now)
 
   class Meta: 

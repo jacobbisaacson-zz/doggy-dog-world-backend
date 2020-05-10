@@ -146,6 +146,8 @@ if i DONT wanna create multiple user_prefs... need help with conditional (if alr
 -- able to add new park, edit and delete it,
 BUT IT DOESN'T STAY IN DB (when logging out and back in)
 
+-- only adds a park if all the checkboxs are checked .. why?  boolean should be checkbox?  or something else?
+
 
 
 TODO's
