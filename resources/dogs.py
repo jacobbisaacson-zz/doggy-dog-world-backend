@@ -46,7 +46,8 @@ def create_dog():
   new_dog = models.Dog.create(
     name=payload['name'], 
     owner=current_user.id, 
-    breed=payload['breed']
+    breed=payload['breed'],
+    image=payload['image']
   )
   print(dir(new_dog))
   dog_dict = model_to_dict(new_dog)
@@ -102,6 +103,8 @@ def update_dog(id):
       dog_to_update.name = payload['name']
     if 'breed' in payload:
       dog_to_update.breed = payload['breed']
+    if 'image' in payload:
+      dog_to_update.image = payload['image']
     dog_to_update.save()
     updated_dog_dict = model_to_dict(dog_to_update)
     updated_dog_dict['owner'].pop('password')
@@ -126,7 +129,8 @@ def show_dog(id):
     return jsonify(
       data={
         'name': dog.name,
-        'breed': dog.breed
+        'breed': dog.breed,
+        'image': dog.image
       },
       message="ONLY REGISTERED USERS can see more info about this dog",
       status=200

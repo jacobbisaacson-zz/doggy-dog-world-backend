@@ -27,6 +27,7 @@ class Dog(Model):
   owner=ForeignKeyField(User, backref='dogs')
   breed=CharField()
   created_at=DateTimeField(default=datetime.datetime.now)
+  image=CharField()
   # image=CharField()
   # have user type in img url (so string)
 
