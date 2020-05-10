@@ -6,21 +6,51 @@ from flask_login import current_user, login_required
 parks = Blueprint('parks', 'parks')
 
 # INDEX -- /api/v1/parks (show parks)
-# @parks.route('/all', methods=['GET'])
-# def get_all_parks():
-#   parks = models.Park.select()
-#   park_dicts = [model_to_dict(park) for park in parks] 
-#   for park_dict in park_dicts:
-#     park_dict['owner'].pop('password')
-#     if not current_user.is_authenticated: 
-#       park_dict.pop('owner')
-#   return jsonify({
-#     'data': park_dicts,
-#     'message': f"Successfully FOUND {len(park_dicts)} (ALL) parks",
-#     'status': 200
-#   })
+@parks.route('/all', methods=['GET'])
+def get_all_parks():
+  parks = models.Park.select()
+  park_dicts = [model_to_dict(park) for park in parks] 
+  for park_dict in park_dicts:
+    park_dict['owner'].pop('password')
+    if not current_user.is_authenticated: 
+      park_dict.pop('owner')
+  return jsonify({
+    'data': park_dicts,
+    'message': f"Successfully FOUND {len(park_dicts)} (ALL) parks",
+    'status': 200
+  })
 
 # TEST
 @parks.route('/')
 def parks_index():
   return "parks resource working"
+
+# CREATE
+@parks.route('/', methods=['POST'])
+# @login_required
+def create_park():
+  payload = request.get_json()
+  print(payload)
+  new_park = models.Park.create(
+    name=payload['name'],
+    isClean=payload['isClean'],
+    isBig=payload['isBig'],
+    isFenced=payload['isFenced'],
+    isBusy=payload['isBusy'],
+  )
+  print(dir(new_park))
+  park_dict = model_to_dict(new_park)
+  print(park_dict)
+
+  return jsonify(
+    data=park_dict, 
+    message='Successfully CREATED PARK',
+    status=201
+  ), 201
+
+
+
+
+
+
+

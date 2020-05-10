@@ -130,7 +130,7 @@ User Preferences / Dog Profile (version 1)
     in App (at src/index.js:9)
 // dont worry about this for now //
 
-
+# NEED TO UPDATE THIS ( THE NEW USER MODEL INFO (PREFS) ) IN THE USER STUFF!!!!
 
 - FOR scoring system (preferences) use 1, 2, and 3
 - Get mapbox token
