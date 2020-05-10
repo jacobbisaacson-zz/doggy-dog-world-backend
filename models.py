@@ -28,12 +28,14 @@ class Dog(Model):
   breed=CharField()
   created_at=DateTimeField(default=datetime.datetime.now)
   # image=CharField()
+  # have user type in img url (so string)
 
   class Meta: 
     database = DATABASE
 
 class Park(Model):
   name=CharField()
+  owner=ForeignKeyField(User, backref='parks')
   # park_creator=ForeignKeyField(User, backref='parks')
   # location=CharField() ********
 
@@ -42,13 +44,10 @@ class Park(Model):
   isFenced=BooleanField(null = False)
   isBusy=BooleanField(null = False)
 
-  class Meta: 
-    database = DATABASE
-
   # current_time=DateTimeField(default=datetime.datetime.now)
 
-  # do these need to be default = false?
-  # do i give these integers?  and then the drop down selection refers to a number?
+  class Meta: 
+    database = DATABASE
 
 
 def initialize():

@@ -27,7 +27,7 @@ def parks_index():
 
 # CREATE
 @parks.route('/', methods=['POST'])
-# @login_required
+@login_required
 def create_park():
   payload = request.get_json()
   print(payload)
@@ -37,6 +37,7 @@ def create_park():
     isBig=payload['isBig'],
     isFenced=payload['isFenced'],
     isBusy=payload['isBusy'],
+    owner=current_user.id
   )
   print(dir(new_park))
   park_dict = model_to_dict(new_park)
@@ -47,6 +48,58 @@ def create_park():
     message='Successfully CREATED PARK',
     status=201
   ), 201
+
+# DESTROY
+@parks.route('/<id>', methods=['DELETE']) 
+@login_required
+def delete_park(id):
+  try: 
+    park_to_delete = models.Park.get_by_id(id)
+    if park_to_delete.owner.id == current_user.id:
+      park_to_delete.delete_instance()
+      return jsonify(
+        data={},
+        message=f"Successfully DELETED PARK with id {id}",
+        status=200
+      ), 200
+    else:
+      return jsonify(
+        data={
+          'error': '403 Forbidden'
+        },
+        message="Park Creator owner's id DOES NOT MATCH dog's id. User can only DELETE their own dogs",
+        status=403
+      ), 403
+
+  except models.DoesNotExist:
+    return jsonify(
+      data={
+        'error': '404 Not found'
+      },
+      message="There is NO PARK with that ID.",
+      status=404
+    ), 404  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
