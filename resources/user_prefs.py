@@ -19,9 +19,7 @@ def user_prefs_show():
   for user_pref_dict in current_user_user_pref_dicts:
     user_pref_dict['owner'].pop('password')
   print(current_user_user_pref_dicts)
-
-  # might want to pop passwords
-
+  
   return jsonify({
     'data': current_user_user_pref_dicts,
     'message': f"Successfully FOUND {len(current_user_user_pref_dicts)} (YOUR) USER PREFERENCES",

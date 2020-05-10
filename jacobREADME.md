@@ -141,6 +141,13 @@ User Preferences / Dog Profile (version 1)
 NEW Q for TS -- 
 if i DONT wanna create multiple user_prefs... need help with conditional (if already have user prefs created, dont create, etc... )
 
+-- what to do for the User Profile Show / addform / edit/update? all messed up
+
+
+
+TODO's
+- set up parks container, parks list, addpark form, edit park modal
+
 
 
 
