@@ -148,6 +148,8 @@ BUT IT DOESN'T STAY IN DB (when logging out and back in)
 
 -- only adds a park if all the checkboxs are checked .. why?  boolean should be checkbox?  or something else?
 
+--why isnt addnew park form working right?  edit worksm but crete doesnt,,, how is that even possible
+
 
 
 TODO's
