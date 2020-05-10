@@ -55,6 +55,41 @@ def create_user_prefs():
   ), 201
 
 
+@user_prefs.route('/<id>', methods=['PUT'])
+@login_required
+def update_user_pref(id):
+  payload = request.get_json()
+  user_pref_to_update = models.User_pref.get_by_id(id)
+  if user_pref_to_update.owner.id == current_user.id:
+    if 'name' in payload:
+      user_pref_to_update.name = payload['name']
+    if 'clean_pref' in payload:
+      user_pref_to_update.clean_pref = payload['clean_pref']
+    if 'big_pref' in payload:
+      user_pref_to_update.big_pref = payload['big_pref']
+    if 'fenced_pref' in payload:
+      user_pref_to_update.fenced_pref = payload['fenced_pref']
+    if 'busy_pref' in payload:
+      user_pref_to_update.busy_pref = payload['busy_pref']
+    if 'note' in payload:
+      user_pref_to_update.note = payload['note']
+    user_pref_to_update.save()
+    updated_user_pref_dict = model_to_dict(user_pref_to_update)
+    updated_user_pref_dict['owner'].pop('password')
+
+    return jsonify(
+        data=updated_user_pref_dict,
+        message=f"Successfully UPDATED USER PREFERENCES with id {id}",
+        status=200
+      ), 200
+  else:
+    return jsonify(
+      data={ 'error': '403 Forbidden'},
+      message="USER's id DOES NOT MATCH current users id. User can only UPDATE their own PREFERENCES",
+      status=403
+    ), 403
+
+
 
 
 
