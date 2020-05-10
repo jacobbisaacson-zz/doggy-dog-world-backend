@@ -24,12 +24,12 @@ class User(UserMixin, Model):
 
 class User_pref(Model):
   name=CharField()
+  owner=ForeignKeyField(User, backref='user_prefs')
   clean_pref=IntegerField()
   big_pref=IntegerField()
   fenced_pref=IntegerField()
   busy_pref=IntegerField()
   note=CharField()
-  owner=ForeignKeyField(User, backref='user_prefs')
 
   class Meta:
     database = DATABASE

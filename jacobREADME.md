@@ -138,6 +138,10 @@ User Preferences / Dog Profile (version 1)
 - making both parks and user pref's integers, 
 
 
+NEW Q for TS -- 
+if i DONT wanna create multiple user_prefs... need help with conditional (if already have user prefs created, dont create, etc... )
+
+
 
 
 
