@@ -78,8 +78,43 @@ def delete_park(id):
       },
       message="There is NO PARK with that ID.",
       status=404
-    ), 404  
+    ), 404
 
+
+# EDIT/UPDATE 
+@parks.route('/<id>', methods=['PUT'])
+# @login_required
+def update_park(id):
+  payload = request.get_json()
+  park_to_update = models.Park.get_by_id(id)
+  if park_to_update.owner.id == current_user.id:
+    if 'name' in payload:
+      park_to_update.name = payload['name']
+    if 'isClean' in payload:
+      park_to_update.isClean = payload['isClean']
+    if 'isBig' in payload:
+      park_to_update.isBig = payload['isBig']
+    if 'isFenced' in payload:
+      park_to_update.isFenced = payload['isFenced']
+    if 'isBusy' in payload:
+      park_to_update.isBusy = payload['isBusy']
+    # if 'owner' in payload:
+    #   park_to_update.owner = payload['owner']
+    park_to_update.save()
+    updated_park_dict = model_to_dict(park_to_update)
+    updated_park_dict['owner'].pop('password')
+
+    return jsonify(
+        data=updated_park_dict,
+        message=f"Successfully UPDATED PARK with id {id}",
+        status=200
+      ), 200
+  # else:
+  #   return jsonify(
+  #     data={ 'error': '403 Forbidden'},
+  #     message="Park's creator's id DOES NOT MATCH parks's id. User can only UPDATE their own dogs",
+  #     status=403
+  #   ), 403
 
 
 
