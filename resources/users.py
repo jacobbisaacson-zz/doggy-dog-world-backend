@@ -6,7 +6,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 users = Blueprint('users', 'users')
 
-# INDEX
+# INDEX -- /api/v1/users
 @users.route('/', methods=['GET'])
 def user_show():
   user_dict = model_to_dict(current_user)
@@ -16,6 +16,33 @@ def user_show():
     'message': "Successfully FOUND you, the USER",
     'status': 200
   }), 200
+
+# # CREATE USER PROFILE
+# @users.route('/', methods=['POST'])
+# # @login_required
+# def create_user_profile():
+#   payload = request.get_json()
+#   print(payload)
+#   new_user_profile = models.User.create(
+#     name=payload['name'], 
+#     clean_pref=payload['clean_pref'], 
+#     big_pref=payload['big_pref'],
+#     fenced_pref=payload['fenced_pref'],
+#     busy_pref=payload['busy_pref'],
+#     note=payload['note'],
+#   )
+#   print(dir(new_user_profile))
+#   user_dict = model_to_dict(new_user_profile)
+#   print(user_dict)
+#   user_dict['user'].pop('password')
+
+#   return jsonify(
+#     data=user_dict, 
+#     message='Successfully CREATED USER PROFILE (WITH PREFERENCES)',
+#     status=201
+#   ), 201
+
+
 
 # # CREATE USER PROFILE
 # @users.route('/', methods=['POST'])
@@ -57,7 +84,15 @@ def register():
     pw_hash = generate_password_hash(payload['password'])
     created_user = models.User.create(
       username=payload['username'],
+
+      # name=payload['name'],
+      # clean_pref=payload['clean_pref'],
+      # big_pref=payload['big_pref'],
+      # fenced_pref=payload['fenced_pref'],
+      # busy_pref=payload['busy_pref'],
+      # note=payload['note'],
       # email=payload['email'],
+
       password=pw_hash
     )
     print(created_user)

@@ -22,6 +22,18 @@ class User(UserMixin, Model):
   class Meta:
     database = DATABASE
 
+class User_pref(Model):
+  name=CharField()
+  clean_pref=IntegerField()
+  big_pref=IntegerField()
+  fenced_pref=IntegerField()
+  busy_pref=IntegerField()
+  note=CharField()
+  owner=ForeignKeyField(User, backref='user_prefs')
+
+  class Meta:
+    database = DATABASE
+
 class Dog(Model):
   name=CharField()
   owner=ForeignKeyField(User, backref='dogs')
@@ -39,12 +51,10 @@ class Park(Model):
   owner=ForeignKeyField(User, backref='parks')
   # park_creator=ForeignKeyField(User, backref='parks')
   # location=CharField() ********
-
   isClean=BooleanField(null = False)
   isBig=BooleanField(null = False)
   isFenced=BooleanField(null = False)
   isBusy=BooleanField(null = False)
-
   # current_time=DateTimeField(default=datetime.datetime.now)
 
   class Meta: 
@@ -54,8 +64,8 @@ class Park(Model):
 def initialize():
   DATABASE.connect()
 
-  DATABASE.create_tables([User, Dog, Park], safe=True)
-  print("CONNECTED to DB and CREATED (User and Dog and Park) TABLES if they weren't already there")
+  DATABASE.create_tables([User, User_pref, Dog, Park], safe=True)
+  print("CONNECTED to DB and CREATED (User, User_pref, Dog, Park) TABLES if they weren't already there")
 
   DATABASE.close()
 
