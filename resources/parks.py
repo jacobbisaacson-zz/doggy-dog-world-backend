@@ -68,7 +68,7 @@ def delete_park(id):
         data={
           'error': '403 Forbidden'
         },
-        message="Park Creator owner's id DOES NOT MATCH dog's id. User can only DELETE their own dogs",
+        message="Park Creator owner's id DOES NOT MATCH creator's id. User can only DELETE the parks they create",
         status=403
       ), 403
 

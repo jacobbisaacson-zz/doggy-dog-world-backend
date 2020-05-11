@@ -139,7 +139,11 @@ User Preferences / Dog Profile (version 1)
 
 
 NEW Q for TS -- 
-if i DONT wanna create multiple user_prefs... need help with conditional (if already have user prefs created, dont create, etc... )
+
+-- TS said to put the user prefs int he user model, 
+but that was not working, so i made a new model... is that going to screw me? see next... 
+
+-- if i DONT wanna create multiple user_prefs... need help with conditional (if already have user prefs created, dont create, etc... )
 
 -- what to do for the User Profile Show / addform / edit/update? all messed up
 
