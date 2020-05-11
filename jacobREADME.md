@@ -158,6 +158,8 @@ BUT IT DOESN'T STAY IN DB (when logging out and back in)
 
 TODO's
 - set up parks container, parks list, addpark form, edit park modal
+-- ask RA for help on the login / registration switch form stuff, or a way to make that make sense
+
 
 
 

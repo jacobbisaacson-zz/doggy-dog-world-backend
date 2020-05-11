@@ -30,7 +30,7 @@ def parks_index():
 @login_required
 def create_park():
   payload = request.get_json()
-  print(payload)
+  print("payload!!!", payload)
   new_park = models.Park.create(
     name=payload['name'],
     clean=payload['clean'],
