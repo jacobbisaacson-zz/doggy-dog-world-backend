@@ -20,10 +20,38 @@ def get_all_parks():
     'status': 200
   })
 
+# GET SINGLE PARK (SHOW)
+@parks.route('/<id>', methods=['GET'])
+def show_park(id):
+  park = models.Park.get_by_id(id)
+  if not current_user.is_authenticated:
+    return jsonify(
+      data={
+        'name': park.name,
+        'location': park.location,
+        'image': park.image,
+        'clean': park.clean,
+        'fenced': park.fenced,
+        'busy': park.busy,
+        'big': park.big
+      },
+      message="ONLY REGISTERED USERS can see more info about this PARK",
+      status=200
+    ), 200
+  else: 
+    park_dict = model_to_dict(park)
+    park_dict['owner'].pop('password')
+    # if park.owner.id != current_user.id:
+    return jsonify(
+      data=park_dict,
+      message=f"FOUND PARK with id {id}",
+      status=200
+    ), 200
+
 # TEST
-@parks.route('/')
-def parks_index():
-  return "parks resource working"
+# @parks.route('/')
+# def parks_index():
+#   return "parks resource working"
 
 # CREATE
 @parks.route('/', methods=['POST'])
