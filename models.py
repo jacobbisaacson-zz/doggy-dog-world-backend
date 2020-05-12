@@ -55,6 +55,7 @@ class Park(Model):
   big=IntegerField()
   fenced=IntegerField()
   busy=IntegerField()
+  image=CharField()
   # current_time=DateTimeField(default=datetime.datetime.now)
 
   class Meta: 

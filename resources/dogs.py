@@ -89,7 +89,7 @@ def delete_dog(id):
       },
       message="There is NO DOG with that ID.",
       status=404
-    ), 404  
+    ), 404
 
 
 # UPDATE

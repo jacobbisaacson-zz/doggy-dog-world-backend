@@ -30,7 +30,7 @@ def parks_index():
 @login_required
 def create_park():
   payload = request.get_json()
-  print("payload!!!", payload)
+  print("PARKS payload!!!", payload)
   new_park = models.Park.create(
     name=payload['name'],
     clean=payload['clean'],
@@ -38,6 +38,7 @@ def create_park():
     fenced=payload['fenced'],
     busy=payload['busy'],
     location=payload['location'],
+    image=payload['image'],
     owner=current_user.id
   )
   print(dir(new_park))
@@ -84,23 +85,23 @@ def delete_park(id):
 
 # EDIT/UPDATE 
 @parks.route('/<id>', methods=['PUT'])
-# @login_required
+@login_required
 def update_park(id):
   payload = request.get_json()
   park_to_update = models.Park.get_by_id(id)
   if park_to_update.owner.id == current_user.id:
     if 'name' in payload:
       park_to_update.name = payload['name']
-    if 'isClean' in payload:
-      park_to_update.isClean = payload['isClean']
-    if 'isBig' in payload:
-      park_to_update.isBig = payload['isBig']
-    if 'isFenced' in payload:
-      park_to_update.isFenced = payload['isFenced']
-    if 'isBusy' in payload:
-      park_to_update.isBusy = payload['isBusy']
-    # if 'owner' in payload:
-    #   park_to_update.owner = payload['owner']
+    if 'clean' in payload:
+      park_to_update.clean = payload['clean']
+    if 'big' in payload:
+      park_to_update.big = payload['big']
+    if 'fenced' in payload:
+      park_to_update.fenced = payload['fenced']
+    if 'busy' in payload:
+      park_to_update.busy = payload['busy']
+    if 'image' in payload:
+      park_to_update.image = payload['image']
     park_to_update.save()
     updated_park_dict = model_to_dict(park_to_update)
     updated_park_dict['owner'].pop('password')
