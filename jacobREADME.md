@@ -164,7 +164,7 @@ TODO's
 -- why does the page render at the bottom when loggin in?
 
 
-
+-- make list of messages, where to display them, and when
 
 
 
