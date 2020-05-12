@@ -161,6 +161,10 @@ TODO's
 -- ask RA for help on the login / registration switch form stuff, or a way to make that make sense
 
 
+-- why does the page render at the bottom when loggin in?
+
+
+
 
 
 
