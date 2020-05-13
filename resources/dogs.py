@@ -42,7 +42,7 @@ def get_all_dogs():
 @login_required
 def create_dog():
   payload = request.get_json()
-  print(payload)
+  print("DOGS PAYLOAD", payload)
   new_dog = models.Dog.create(
     name=payload['name'], 
     owner=current_user.id, 

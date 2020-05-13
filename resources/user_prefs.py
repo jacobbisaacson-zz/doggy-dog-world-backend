@@ -19,7 +19,7 @@ def user_prefs_show():
   for user_pref_dict in current_user_user_pref_dicts:
     user_pref_dict['owner'].pop('password')
   print(current_user_user_pref_dicts)
-  
+
   return jsonify({
     'data': current_user_user_pref_dicts,
     'message': f"Successfully FOUND {len(current_user_user_pref_dicts)} (YOUR) USER PREFERENCES",
@@ -29,10 +29,10 @@ def user_prefs_show():
 # CREATE
 @user_prefs.route('/', methods=['POST'])
 @login_required
-def create_user_prefs():
+def create_user_profile():
   payload = request.get_json()
-  print(payload)
-  new_user_prefs = models.User_pref.create(
+  print("USER PROFILE PREFS -- PAYLOAD -->", payload)
+  new_user_profile = models.User_pref.create(
     name=payload['name'], 
     owner=current_user.id, 
     clean_pref=payload['clean_pref'],
@@ -41,8 +41,8 @@ def create_user_prefs():
     busy_pref=payload['busy_pref'],
     note=payload['note'],
   )
-  print(dir(new_user_prefs))
-  user_prefs_dict = model_to_dict(new_user_prefs)
+  print(dir(new_user_profile))
+  user_prefs_dict = model_to_dict(new_user_profile)
   print(user_prefs_dict)
   user_prefs_dict['owner'].pop('password')
 
@@ -52,7 +52,7 @@ def create_user_prefs():
     status=201
   ), 201
 
-
+# UPDATE
 @user_prefs.route('/<id>', methods=['PUT'])
 @login_required
 def update_user_pref(id):
@@ -83,7 +83,7 @@ def update_user_pref(id):
   else:
     return jsonify(
       data={ 'error': '403 Forbidden'},
-      message="USER's id DOES NOT MATCH current users id. User can only UPDATE their own PREFERENCES",
+      message="USER's ID DOES NOT MATCH current users id. User can only UPDATE their own PREFERENCES",
       status=403
     ), 403
 

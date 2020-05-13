@@ -61,17 +61,18 @@ def create_park():
   print("PARKS payload!!!", payload)
   new_park = models.Park.create(
     name=payload['name'],
+    owner=current_user.id,
+    location=payload['location'],
     clean=payload['clean'],
     big=payload['big'],
     fenced=payload['fenced'],
     busy=payload['busy'],
-    location=payload['location'],
-    image=payload['image'],
-    owner=current_user.id
+    image=payload['image']
   )
   print(dir(new_park))
   park_dict = model_to_dict(new_park)
   print(park_dict)
+  park_dict['owner'].pop("password")
 
   return jsonify(
     data=park_dict, 
