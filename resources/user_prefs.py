@@ -33,12 +33,13 @@ def create_user_profile():
   payload = request.get_json()
   print("USER PROFILE PREFS -- PAYLOAD -->", payload)
 
-# 1. make delete route
+# 1. make delete route -- done
 # 2. change the user_pref route so user can only have 1 set of prefs
-# 3. 
+
   # if there's no user_prefs fo rthe currentlyloggedinuser, 
   # then CREATE a user
-  # if user_pref_to_update.owner.id == current_user.id:
+
+  # if new_user_profile.owner.id == current_user.id:
 
   new_user_profile = models.User_pref.create(
     name=payload['name'], 
@@ -96,6 +97,59 @@ def update_user_pref(id):
     ), 403
 
 # DELETE
+# make it so that only 1 can be created.  once a user makes their
+# preferences, they can only edit it moving forward
+
+@user_prefs.route('/<id>', methods=['DELETE'])
+@login_required
+def delete_user_pref(id):
+  try:
+    user_pref_to_delete = models.User_pref.get_by_id(id)
+    if user_pref_to_delete.owner.id == current_user.id:
+      user_pref_to_delete.delete_instance()
+      return jsonify(
+        data={},
+        message=f"Successfully DELETED USER PREFS (should only have 1) with id {id}",
+        status=200
+      ), 200
+    else:
+      return jsonify(
+        data={
+          'error': '403 Forbidden'
+        },
+        message="User Pref's owner's id DOES NOT MATCH user's id.",
+        status=403
+      ), 403
+
+  except models.DoesNotExist:
+    return jsonify(
+      data={
+        'error': '404 Not found'
+      },
+      message="There is NO User prefs with that ID.",
+      status=404
+    ), 404
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
