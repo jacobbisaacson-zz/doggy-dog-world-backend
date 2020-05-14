@@ -33,7 +33,6 @@ def create_user_profile():
   payload = request.get_json()
   print("USER PROFILE PREFS -- PAYLOAD -->", payload)
 
-# 1. make delete route -- done
 # 2. change the user_pref route so user can only have 1 set of prefs
 
   # if there's no user_prefs fo rthe currentlyloggedinuser, 
