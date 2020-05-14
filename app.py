@@ -36,10 +36,10 @@ def unauthorized():
     status=401
   ), 401
 
-CORS(dogs, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(parks, origins=['http://localhost:3000'], supports_credentials=True)
-CORS(user_prefs, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(dogs, origins=['http://localhost:3000', 'https://its-a-doggy-dog-world.herokuapp.com'], supports_credentials=True)
+CORS(users, origins=['http://localhost:3000', 'https://its-a-doggy-dog-world.herokuapp.com'], supports_credentials=True)
+CORS(parks, origins=['http://localhost:3000', 'https://its-a-doggy-dog-world.herokuapp.com'], supports_credentials=True)
+CORS(user_prefs, origins=['http://localhost:3000', 'https://its-a-doggy-dog-world.herokuapp.com'], supports_credentials=True)
 
 app.register_blueprint(dogs, url_prefix='/api/v1/dogs')
 app.register_blueprint(users, url_prefix='/api/v1/users')
