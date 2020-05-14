@@ -32,6 +32,14 @@ def user_prefs_show():
 def create_user_profile():
   payload = request.get_json()
   print("USER PROFILE PREFS -- PAYLOAD -->", payload)
+
+# 1. make delete route
+# 2. change the user_pref route so user can only have 1 set of prefs
+# 3. 
+  # if there's no user_prefs fo rthe currentlyloggedinuser, 
+  # then CREATE a user
+  # if user_pref_to_update.owner.id == current_user.id:
+
   new_user_profile = models.User_pref.create(
     name=payload['name'], 
     owner=current_user.id, 
@@ -86,6 +94,8 @@ def update_user_pref(id):
       message="USER's ID DOES NOT MATCH current users id. User can only UPDATE their own PREFERENCES",
       status=403
     ), 403
+
+# DELETE
 
 
 
