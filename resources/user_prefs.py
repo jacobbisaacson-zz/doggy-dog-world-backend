@@ -14,6 +14,7 @@ def user_prefs_index():
 @user_prefs.route('/show', methods=['GET'])
 @login_required
 def user_prefs_show():
+  # have to query the user_prefs table and only return the currently loggef in user's prefs
   current_user_user_pref_dicts = [model_to_dict(user_pref) for user_pref in current_user.user_prefs]
   print(current_user_user_pref_dicts)
   for user_pref_dict in current_user_user_pref_dicts:
@@ -25,6 +26,20 @@ def user_prefs_show():
     'message': f"Successfully FOUND {len(current_user_user_pref_dicts)} (YOUR) USER PREFERENCES",
     'status': 200
   }), 200
+
+# @user_prefs.route('/all', methods=['GET'])
+# def get_all_user_prefs():
+#   user_prefs = models.User_pref.select()
+#   user_pref_dicts = [model_to_dict(user_pref) for user_pref in user_prefs] 
+#   for user_pref in user_pref_dicts:
+#     user_pref['owner'].pop('password')
+#     if not current_user.is_authenticated: 
+#       user_pref.pop('owner')
+#   return jsonify({
+#     'data': user_pref_dicts,
+#     'message': f"Successfully FOUND {len(user_pref_dicts)} (ALL) user_prefs",
+#     'status': 200
+#   })
 
 # CREATE
 @user_prefs.route('/', methods=['POST'])
@@ -137,6 +152,31 @@ def delete_user_pref(id):
 
 
 
+
+
+# @user_prefs.route('/show', methods=['GET'])
+# @login_required
+# def user_prefs_show():
+#   # try:
+#   #   user_pref_to_show = current_user.user_pref
+#   #   if user_pref_to_show.owner.id == current_user.id:
+
+#   # have to query the user_prefs table and only 
+#   # return the currently logged in user's prefs
+
+#     # if new_user_profile.owner.id == current_user.id:
+#   if current_user.user_prefs:
+#     current_user_user_pref_dicts = [model_to_dict(user_pref) for user_pref in current_user.user_prefs]
+#     print(current_user_user_pref_dicts)
+#     for user_pref_dict in current_user_user_pref_dicts:
+#       user_pref_dict['owner'].pop('password')
+#     print(current_user_user_pref_dicts)
+
+#   return jsonify({
+#     'data': current_user_user_pref_dicts,
+#     'message': f"Successfully FOUND {len(current_user_user_pref_dicts)} (YOUR) USER PREFERENCES",
+#     'status': 200
+#   }), 200
 
 
 

@@ -1,23 +1,18 @@
+import os
 from peewee import *
 import datetime
 from flask_login import UserMixin
+from playhouse.db_url import connect
 
-DATABASE = SqliteDatabase('dogs.sqlite') 
+if 'ON_HEROKU' in os.environ:
+  DATABASE = connect(os.environ.get('DATABASE_URL'))
+else:
+  DATABASE = SqliteDatabase('dogs.sqlite')
+
 
 class User(UserMixin, Model):
   username=CharField(unique=True)
   password=CharField()
-
-  # name=CharField()
-  # clean_pref=IntegerField()
-  # big_pref=IntegerField()
-  # fenced_pref=IntegerField()
-  # busy_pref=IntegerField()
-  # note=CharField()
-
-  # NEED TO UPDATE THIS IN THE USER STUFF!!!!
-
-  # email=CharField(unique=True)
 
   class Meta:
     database = DATABASE
@@ -47,7 +42,6 @@ class Dog(Model):
 class Park(Model):
   name=CharField()
   owner=ForeignKeyField(User, backref='parks')
-  # park_creator=ForeignKeyField(User, backref='parks')
   location=CharField()
   clean=IntegerField()
   big=IntegerField()
@@ -66,5 +60,9 @@ def initialize():
   print("CONNECTED to DB and CREATED (User, User_pref, Dog, Park) TABLES if they weren't already there")
 
   DATABASE.close()
+
+
+
+
 
 

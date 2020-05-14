@@ -1,4 +1,5 @@
-from flask import Flask, jsonify
+import os
+from flask import Flask, jsonify, g
 from resources.dogs import dogs
 from resources.users import users
 from resources.parks import parks
@@ -45,6 +46,19 @@ app.register_blueprint(users, url_prefix='/api/v1/users')
 app.register_blueprint(parks, url_prefix='/api/v1/parks')
 app.register_blueprint(user_prefs, url_prefix='/api/v1/user_prefs')
 
+@app.before_request
+def before_request():
+  print("you should see this before each request")
+  g.db = models.DATABASE
+  g.db.connect()
+
+
+@app.after_request
+def after_request(response):
+  print("you should see this after each request")
+  g.db.close()
+  return response
+
 @app.route('/')
 def hello():
   return 'Hello, world!'
@@ -56,6 +70,11 @@ def get_json():
 @app.route('/say_hello/<username>')
 def say_hello(username):
   return "Hello {}".format(username)
+
+
+if 'ON_HEROKU' in os.environ: 
+  print('\non heroku!')
+  models.initialize()
 
 
 if __name__ == '__main__':
