@@ -187,7 +187,8 @@ NEEDS --
 
 5. The correct color for the park card needs to show up when the park is created (not by logging out and back in)
 
-6. DONT EVEN BOTHER WITH EDITING/U{PDAING the user's preferences}
+6. DONT EVEN BOTHER WITH EDITING/UPDAING the user's preferences}
+7. DONT EVEN BOTHER WITH EDITING/UPDATING the park info
 
 
 Stuff for this weekend -- 
@@ -195,6 +196,8 @@ Stuff for this weekend --
 2. flash messages
 3. user needs to see their username in the header next to logout
 4. would love to get MAP container (if possible)
+5. make user profile card look better
+6. make the modals for showing the park look better (GET COLORS IN THERE REFERRING TO THE MATCH WITH THEIR USER SETTINGS)
 
 
 
