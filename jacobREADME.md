@@ -167,6 +167,23 @@ TODO's
 -- make list of messages, where to display them, and when
 
 
+-- FRIDAY
+
+-- making newly added park show immediately after creation
+-- need to see the username's name next to logout link in the header
+-- edit user modal has an error, but loks like its getting the info from the clicks. submitting issue
+--
+
+
+
+
+
+
+
+
+
+
+
 
 
 
