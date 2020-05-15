@@ -181,6 +181,15 @@ NEEDS --
 	- "you can't edit this park (or dog)"
 	- "congrats on registering and setting up your profile!  check out the parks, add your own, add your dogs, etc."
 
+4. DEPLOYMENT -- can't register or login!
+
+
+Other stuff for this weekend -- 
+1. more styling
+2. flash messages
+3. user needs to see their username in the header next to logout
+4. would love to get MAP container (if possible)
+
 
 
 
