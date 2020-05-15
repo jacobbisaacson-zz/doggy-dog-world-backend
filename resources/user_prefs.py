@@ -14,7 +14,7 @@ def user_prefs_index():
 @user_prefs.route('/show', methods=['GET'])
 @login_required
 def user_prefs_show():
-  # have to query the user_prefs table and only return the currently loggef in user's prefs
+  # have to query the user_prefs table and only return the currently logged in user's prefs
   current_user_user_pref_dicts = [model_to_dict(user_pref) for user_pref in current_user.user_prefs]
   print(current_user_user_pref_dicts)
   for user_pref_dict in current_user_user_pref_dicts:
@@ -70,7 +70,7 @@ def create_user_profile():
   user_prefs_dict['owner'].pop('password')
 
   return jsonify(
-    data=user_prefs_dict, 
+    data=[user_prefs_dict], 
     message='Successfully CREATED USER PREFERENCES',
     status=201
   ), 201
