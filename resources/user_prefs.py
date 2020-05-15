@@ -76,9 +76,9 @@ def create_user_profile():
   ), 201
 
 # UPDATE
-@user_prefs.route('/<id>', methods=['PUT'])
+@user_prefs.route('/', methods=['PUT'])
 @login_required
-def update_user_pref(id):
+def update_user_pref():
   payload = request.get_json()
   user_pref_to_update = models.User_pref.get_by_id(id)
   if user_pref_to_update.owner.id == current_user.id:
@@ -100,7 +100,7 @@ def update_user_pref(id):
 
     return jsonify(
         data=updated_user_pref_dict,
-        message=f"Successfully UPDATED USER PREFERENCES with id {id}",
+        message=f"Successfully UPDATED USER PREFERENCES",
         status=200
       ), 200
   else:
