@@ -176,12 +176,18 @@ TODO's
 
 NEEDS --
 1. user needs to be able to edit/update the parks they add
+
 2. user needs to be able to edit/update the preferences they created for themselves
+
 3. Messages -- user needs to see messages for:
 	- "you can't edit this park (or dog)"
 	- "congrats on registering and setting up your profile!  check out the parks, add your own, add your dogs, etc."
+
 4. DEPLOYMENT -- can't register or login!
+
 5. The correct color for the park card needs to show up when the park is created (not by logging out and back in)
+
+6. DONT EVEN BOTHER WITH EDITING/U{PDAING the user's preferences}
 
 
 Stuff for this weekend -- 
