@@ -172,7 +172,14 @@ TODO's
 -- making newly added park show immediately after creation
 -- need to see the username's name next to logout link in the header
 -- edit user modal has an error, but loks like its getting the info from the clicks. submitting issue
---
+-- 
+
+NEEDS --
+1. user needs to be able to edit/update the parks they add
+2. user needs to be able to edit/update the preferences they created for themselves
+3. Messages -- user needs to see messages for:
+	- "you can't edit this park (or dog)"
+	- "congrats on registering and setting up your profile!  check out the parks, add your own, add your dogs, etc."
 
 
 
