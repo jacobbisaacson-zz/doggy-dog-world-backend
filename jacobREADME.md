@@ -180,11 +180,11 @@ NEEDS --
 3. Messages -- user needs to see messages for:
 	- "you can't edit this park (or dog)"
 	- "congrats on registering and setting up your profile!  check out the parks, add your own, add your dogs, etc."
-
 4. DEPLOYMENT -- can't register or login!
+5. The correct color for the park card needs to show up when the park is created (not by logging out and back in)
 
 
-Other stuff for this weekend -- 
+Stuff for this weekend -- 
 1. more styling
 2. flash messages
 3. user needs to see their username in the header next to logout
